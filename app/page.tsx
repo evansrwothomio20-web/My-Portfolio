@@ -37,10 +37,10 @@ export default function Home() {
                 Available for New Projects & Roles
               </div>
               <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
-                Hi, I&apos;m <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">[Your Name]</span>
+                Hi, I&apos;m <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Evans Rwothomio</span>
               </h1>
               <p className="text-zinc-400 text-lg leading-relaxed max-w-xl">
-                [Insert your short pitch/bio here. E.g., Full-Stack Software Engineer building scalable, high-performance web applications, cloud-native architectures, and autonomous AI systems.]
+                Full-Stack Developer bridging modern web frameworks, AI agentic workflows, and cloud infrastructure. Focused on building fast, accessible, and user-centric software.
               </p>
             </div>
 

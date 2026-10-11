@@ -1,188 +1,518 @@
 "use client";
 
+import { useState } from "react";
 import FadeIn from "@/components/FadeIn";
+import InteractiveHeroLens from "@/components/InteractiveHeroLens";
+import TechnicalArsenal from "@/components/TechnicalArsenal";
 import { Github, Linkedin } from "@/components/Icons";
 import { 
   Mail, 
+  Check,
   ExternalLink, 
-  Code2, 
-  ArrowUpRight, 
-  Terminal, 
-  FolderGit2 
+  FolderGit2,
+  GraduationCap,
+  BookOpen,
+  School,
+  Award,
+  SendHorizontal,
+  MapPin
 } from "lucide-react";
 
 export default function Home() {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText("evansrwothomio20@gmail.com");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
   return (
-    <main className="min-h-screen max-w-6xl mx-auto px-4 py-12 md:py-20 space-y-12">
+    <main className="min-h-screen w-full bg-black text-white relative">
       
       {/* ---------------- FLOATING NAVBAR ---------------- */}
-      <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 glass-card px-6 py-3 rounded-full flex items-center gap-6 text-sm font-medium">
-        <a href="#about" className="hover:text-cyan-400 transition-colors">About</a>
+      <nav className="fixed top-5 left-1/2 -translate-x-1/2 z-50 glass-card px-5 sm:px-8 py-3 rounded-full flex items-center gap-4 sm:gap-6 text-xs sm:text-sm font-medium shadow-2xl backdrop-blur-xl border border-white/10">
+        <a href="#hero-lens" className="hover:text-cyan-400 transition-colors">Home</a>
+        <a href="#story" className="hover:text-cyan-400 transition-colors">Story</a>
+        <a href="#education" className="hover:text-cyan-400 transition-colors">Education</a>
         <a href="#projects" className="hover:text-cyan-400 transition-colors">Projects</a>
         <a href="#skills" className="hover:text-cyan-400 transition-colors">Skills</a>
         <a href="#contact" className="hover:text-cyan-400 transition-colors">Contact</a>
       </nav>
 
-      {/* ---------------- BENTO GRID CONTAINER ---------------- */}
-      <div id="about" className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-12">
-        
-        {/* HERO CARD (Spans 2 columns) */}
-        <FadeIn delay={0.1} className="md:col-span-2">
-          <div className="glass-card rounded-3xl p-8 h-full flex flex-col justify-between relative overflow-hidden group">
-            <div className="absolute -top-10 -right-10 w-40 h-40 bg-cyan-500/10 rounded-full blur-3xl group-hover:bg-cyan-500/20 transition-all duration-500" />
+      {/* ---------------- 1. INTERACTIVE HERO LENS (OPENING LANDING SCREEN) ---------------- */}
+      <InteractiveHeroLens />
+
+      {/* ---------------- PORTFOLIO CONTENT SECTIONS ---------------- */}
+      <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 space-y-24 md:space-y-36 pb-20">
+
+      {/* ---------------- CYBER-RETRO ABOUT ME: THE STORY SO FAR ---------------- */}
+      <FadeIn delay={0.1}>
+        <section id="story" className="w-full pt-12 sm:pt-16 pb-8 relative">
+          
+          {/* Ambient Glows */}
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+
+          {/* Master 2-Column Retro Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start relative z-10">
             
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold mb-6 border border-emerald-500/20">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                Available for New Projects & Roles
-              </div>
-              <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
-                Hi, I&apos;m <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Evans Rwothomio</span>
-              </h1>
-              <p className="text-zinc-400 text-lg leading-relaxed max-w-xl">
-                Full-Stack Developer bridging modern web frameworks, AI agentic workflows, and cloud infrastructure. Focused on building fast, accessible, and user-centric software.
-              </p>
-            </div>
-
-            <div className="flex items-center gap-4 mt-8 pt-6 border-t border-zinc-800/80">
-              <a href="#contact" className="px-5 py-2.5 rounded-full bg-white text-zinc-950 font-semibold text-sm hover:bg-zinc-200 transition-colors flex items-center gap-2">
-                Get in Touch <ArrowUpRight className="w-4 h-4" />
-              </a>
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-full glass-card text-zinc-400 hover:text-white transition-colors" aria-label="GitHub Profile">
-                <Github className="w-5 h-5" />
-              </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-full glass-card text-zinc-400 hover:text-white transition-colors" aria-label="LinkedIn Profile">
-                <Linkedin className="w-5 h-5" />
-              </a>
-            </div>
-          </div>
-        </FadeIn>
-
-        {/* QUICK PROFILE / STATS CARD */}
-        <FadeIn delay={0.2} className="md:col-span-1">
-          <div className="glass-card rounded-3xl p-8 h-full flex flex-col justify-between">
-            <div className="space-y-4">
-              <div className="p-3 rounded-2xl bg-zinc-800/60 w-fit text-cyan-400">
-                <Terminal className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-bold">Primary Focus</h3>
-              <p className="text-zinc-400 text-sm leading-relaxed">
-                [E.g., Web3 Protocols, AI-Assisted Workflows, Full-Stack Systems Architecture & Cloud Services]
-              </p>
-            </div>
-            <div className="mt-6 pt-4 border-t border-zinc-800/80 text-xs text-zinc-500">
-              📍 Based in [Your Location / Remote]
-            </div>
-          </div>
-        </FadeIn>
-
-        {/* FEATURED PROJECTS HEADER */}
-        <div id="projects" className="md:col-span-3 pt-6">
-          <h2 className="text-2xl font-bold tracking-tight flex items-center gap-2">
-            <FolderGit2 className="w-6 h-6 text-cyan-400" /> Featured Projects
-          </h2>
-        </div>
-
-        {/* PROJECT CARD 1 (Spans 2 columns) */}
-        <FadeIn delay={0.3} className="md:col-span-2">
-          <div className="glass-card rounded-3xl p-8 flex flex-col justify-between group hover:border-cyan-500/30 transition-all duration-300">
-            <div>
-              <div className="flex justify-between items-start mb-4">
-                <span className="text-xs font-mono text-cyan-400 uppercase tracking-widest">[ Category / Domain ]</span>
-                <a href="#" className="p-2 rounded-full glass-card text-zinc-400 hover:text-white transition-colors" aria-label="Open project 1">
-                  <ExternalLink className="w-4 h-4" />
-                </a>
-              </div>
-              <h3 className="text-2xl font-bold mb-2 group-hover:text-cyan-400 transition-colors">[ Project Title 1 ]</h3>
-              <p className="text-zinc-400 text-sm mb-6 leading-relaxed">
-                [Detailed project description explaining the problem, architectural choices, and technical solution delivered.]
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-2 pt-4 border-t border-zinc-800/80">
-              {["Next.js", "FastAPI", "Tailwind CSS", "Supabase"].map((tech) => (
-                <span key={tech} className="px-3 py-1 rounded-full bg-zinc-800/80 text-zinc-300 text-xs font-mono">
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-        </FadeIn>
-
-        {/* PROJECT CARD 2 (Spans 1 column) */}
-        <FadeIn delay={0.4} className="md:col-span-1">
-          <div className="glass-card rounded-3xl p-8 flex flex-col justify-between group hover:border-cyan-500/30 transition-all duration-300">
-            <div>
-              <div className="flex justify-between items-start mb-4">
-                <span className="text-xs font-mono text-cyan-400 uppercase tracking-widest">[ Mobile / Web ]</span>
-                <a href="#" className="p-2 rounded-full glass-card text-zinc-400 hover:text-white transition-colors" aria-label="Open project 2">
-                  <ExternalLink className="w-4 h-4" />
-                </a>
-              </div>
-              <h3 className="text-xl font-bold mb-2 group-hover:text-cyan-400 transition-colors">[ Project Title 2 ]</h3>
-              <p className="text-zinc-400 text-sm mb-6">
-                [Brief description highlighting real-time capability, offline resilience, or AI integrations.]
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-2 pt-4 border-t border-zinc-800/80">
-              {["React", "Node.js", "PostgreSQL"].map((tech) => (
-                <span key={tech} className="px-2.5 py-1 rounded-full bg-zinc-800/80 text-zinc-300 text-xs font-mono">
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-        </FadeIn>
-
-        {/* SKILLS MATRIX CARD (Spans 3 columns) */}
-        <FadeIn delay={0.5} className="md:col-span-3">
-          <div id="skills" className="glass-card rounded-3xl p-8">
-            <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-              <Code2 className="w-5 h-5 text-cyan-400" /> Technical Arsenal
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            {/* ================= LEFT COLUMN: RETRO PROFILE STACK ================= */}
+            <div className="lg:col-span-5 flex flex-col space-y-5">
               
-              <div>
-                <h4 className="text-xs font-mono text-zinc-500 uppercase tracking-wider mb-3">Languages</h4>
-                <p className="text-sm text-zinc-300 font-medium">TypeScript, JavaScript, Python, C, SQL, HTML/CSS</p>
+              {/* 1. Mini Profile Header Card (Stepped Pixel Border) */}
+              <div className="pixel-corners bg-gradient-to-r from-cyan-500 via-blue-500 to-amber-500 p-[2px] shadow-lg pixel-shadow-cyan">
+                <div className="pixel-corners bg-zinc-950 p-4 sm:p-5">
+                  <div className="flex items-center justify-between pb-3 border-b border-zinc-800">
+                    <div className="flex items-center gap-3">
+                      {/* Mini Pixel Avatar Frame */}
+                      <div className="w-10 h-10 pixel-corners-sm bg-cyan-400 p-[1.5px] shrink-0">
+                        <img 
+                          src="/evans-about.png" 
+                          alt="Evans Rwothomio avatar" 
+                          className="w-full h-full object-cover object-[50%_20%] pixel-corners-sm grayscale"
+                        />
+                      </div>
+                      <div>
+                        <h2 className="font-pixel text-xs sm:text-sm text-white tracking-wide">
+                          Evans Rwothomio
+                        </h2>
+                        <p className="font-retro-mono text-zinc-400 text-xs sm:text-sm">
+                          Full-Stack Systems Engineer
+                        </p>
+                      </div>
+                    </div>
+                    {/* Retro Status Tag */}
+                    <span className="font-pixel text-[10px] text-cyan-400 bg-cyan-500/10 border border-cyan-500/30 px-2 py-0.5 rounded-sm">
+                      v2.6
+                    </span>
+                  </div>
+
+                  {/* Status & Social Ribbon */}
+                  <div className="flex items-center justify-between pt-3 text-xs">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-sm shadow-emerald-400" />
+                      <span className="font-retro-mono text-emerald-400 text-xs tracking-wider">
+                        Available for work
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <a 
+                        href="https://github.com/evansrwothomio20-web" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="p-1.5 bg-zinc-900 hover:bg-cyan-500/20 text-zinc-400 hover:text-cyan-400 border border-zinc-800 hover:border-cyan-500/50 transition-colors pixel-corners-sm"
+                        title="GitHub"
+                        aria-label="GitHub Profile"
+                      >
+                        <Github className="w-3.5 h-3.5" />
+                      </a>
+                      <a 
+                        href="https://linkedin.com" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="p-1.5 bg-zinc-900 hover:bg-cyan-500/20 text-zinc-400 hover:text-cyan-400 border border-zinc-800 hover:border-cyan-500/50 transition-colors pixel-corners-sm"
+                        title="LinkedIn"
+                        aria-label="LinkedIn Profile"
+                      >
+                        <Linkedin className="w-3.5 h-3.5" />
+                      </a>
+                      <button 
+                        onClick={handleCopyEmail}
+                        className="p-1.5 bg-zinc-900 hover:bg-cyan-500/20 text-zinc-400 hover:text-cyan-400 border border-zinc-800 hover:border-cyan-500/50 transition-colors pixel-corners-sm relative"
+                        title="Copy Email"
+                        aria-label="Copy Email"
+                      >
+                        {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Mail className="w-3.5 h-3.5" />}
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div>
-                <h4 className="text-xs font-mono text-zinc-500 uppercase tracking-wider mb-3">Frameworks</h4>
-                <p className="text-sm text-zinc-300 font-medium">Next.js, React, FastAPI, Tailwind CSS, Node.js</p>
-              </div>
+              {/* 2. Dithered Bitmap Portrait Frame (Stepped Pixel Cut Corners) */}
+              <div className="pixel-corners bg-gradient-to-b from-cyan-400 via-zinc-700 to-amber-500 p-[2px] shadow-2xl pixel-shadow-dark">
+                <div className="pixel-corners bg-zinc-950 p-2 sm:p-3 relative overflow-hidden group">
+                  
+                  {/* Photo Container with Dither Screen Overlay */}
+                  <div className="relative aspect-[4/5] w-full overflow-hidden pixel-corners-sm bg-zinc-900">
+                    <img 
+                      src="/evans-about.png" 
+                      alt="Evans Rwothomio at Hackathon" 
+                      className="w-full h-full object-cover object-[50%_15%] filter contrast-110 brightness-95 sepia-[0.2] grayscale group-hover:grayscale-0 group-hover:sepia-0 transition-all duration-700 scale-100 group-hover:scale-105"
+                    />
 
-              <div>
-                <h4 className="text-xs font-mono text-zinc-500 uppercase tracking-wider mb-3">Cloud & Data</h4>
-                <p className="text-sm text-zinc-300 font-medium">Supabase, Vercel, MySQL, Cloud Services, REST APIs</p>
-              </div>
+                    {/* Dither Halftone Dot Matrix Overlay */}
+                    <div className="absolute inset-0 dither-screen pointer-events-none mix-blend-multiply opacity-80 group-hover:opacity-40 transition-opacity duration-500" />
 
-              <div>
-                <h4 className="text-xs font-mono text-zinc-500 uppercase tracking-wider mb-3">Tools & Systems</h4>
-                <p className="text-sm text-zinc-300 font-medium">VS Code, Git/GitHub, LangChain, SAD & DFD Diagrams</p>
+                    {/* Retro Corner HUD Marker */}
+                    <div className="absolute bottom-3 left-3 bg-zinc-950/90 border border-cyan-500/40 px-2.5 py-1 pixel-corners-sm">
+                      <span className="font-pixel text-[9px] text-cyan-400 uppercase tracking-widest">
+                        SYS // EVANS.DEV
+                      </span>
+                    </div>
+                  </div>
+
+                </div>
               </div>
 
             </div>
-          </div>
-        </FadeIn>
 
-        {/* FOOTER / CONTACT CARD (Spans 3 columns) */}
-        <FadeIn delay={0.6} className="md:col-span-3">
-          <div id="contact" className="glass-card rounded-3xl p-8 md:p-12 text-center space-y-6 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-transparent to-blue-500/10 blur-3xl pointer-events-none" />
-            <h2 className="text-3xl md:text-4xl font-bold">Let&apos;s build something remarkable together.</h2>
-            <p className="text-zinc-400 max-w-lg mx-auto text-sm md:text-base">
-              I&apos;m open to freelance opportunities, collaborative projects, or full-time roles.
+            {/* ================= RIGHT COLUMN: RETRO STORY & CAPABILITIES ================= */}
+            <div className="lg:col-span-7 flex flex-col space-y-6">
+              
+              {/* 1. Main Bio Card (Stepped Pixel Border) */}
+              <div className="pixel-corners bg-gradient-to-r from-cyan-500 via-zinc-700 to-zinc-800 p-[2px] shadow-xl">
+                <div className="pixel-corners bg-zinc-950 flex flex-col justify-between">
+                  
+                  {/* Card Content */}
+                  <div className="p-6 sm:p-8 space-y-5">
+                    <div className="flex items-center justify-between">
+                      <span className="font-pixel text-[11px] text-cyan-400 uppercase tracking-widest flex items-center gap-2">
+                        <span className="w-2 h-2 bg-cyan-400 animate-ping rounded-full" />
+                        ABOUT // MISSION
+                      </span>
+                      <span className="font-retro-mono text-zinc-500 text-sm">
+                        SEC_01
+                      </span>
+                    </div>
+
+                    <h1 className="font-pixel text-2xl sm:text-3xl md:text-4xl text-white tracking-tight leading-tight">
+                      THE STORY <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-amber-400">SO FAR</span>
+                    </h1>
+
+                    <p className="text-zinc-300 text-sm sm:text-base md:text-lg leading-relaxed font-normal">
+                      I&apos;m <strong className="text-white font-semibold">Evans Rwothomio</strong>, a Full-Stack Software Engineer dedicated to creating intuitive, resilient, and engaging digital experiences across high-performance web systems and cloud infrastructure.
+                    </p>
+
+                    <p className="text-zinc-400 text-sm sm:text-base leading-relaxed">
+                      Explore my <a href="#projects" className="text-cyan-400 font-medium hover:underline">works</a> to see how I blend architecture with clean usability, and feel free to <a href="#contact" className="text-amber-400 font-medium hover:underline">reach out</a> and collaborate on something remarkable!
+                    </p>
+
+                    {/* Architectural Quote */}
+                    <div className="border-l-2 border-amber-400 pl-4 py-2 bg-amber-500/5 my-2">
+                      <p className="font-retro-mono text-amber-300 text-base sm:text-lg italic">
+                        &ldquo;Architect the design, test the boundary cases, and deploy with purpose.&rdquo;
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Retro Location & Contact Strip (Warm Accent Bar Inspired by Reference) */}
+                  <div className="bg-amber-500/10 border-t border-amber-500/20 px-6 py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-retro-mono text-amber-300/90">
+                    <div className="flex items-center gap-2">
+                      <MapPin className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                      <span>Kampala, Uganda • Remote Available</span>
+                    </div>
+                    <button 
+                      onClick={handleCopyEmail}
+                      className="text-left sm:text-right hover:text-amber-200 transition-colors flex items-center gap-1.5 group"
+                    >
+                      <span>evansrwothomio20@gmail.com</span>
+                      <span className="text-[10px] text-amber-400 font-pixel opacity-70 group-hover:opacity-100">
+                        {copied ? "[COPIED]" : "[COPY]"}
+                      </span>
+                    </button>
+                  </div>
+
+                </div>
+              </div>
+
+              {/* 2. Capabilities & Focus Box (8-bit Notched Cut Corners) */}
+              <div className="pixel-notch bg-gradient-to-r from-amber-500/80 via-zinc-800 to-cyan-500/80 p-[2px] shadow-xl">
+                <div className="pixel-notch bg-zinc-950 p-6 sm:p-7 space-y-5">
+                  
+                  <div className="flex items-center justify-between">
+                    <span className="font-pixel text-[10px] text-amber-400 uppercase tracking-widest">
+                      // CORE DISCIPLINES &amp; SYSTEMS
+                    </span>
+                    <span className="font-retro-mono text-zinc-500 text-xs">
+                      5 CAPABILITIES
+                    </span>
+                  </div>
+
+                  {/* Retro 8-Bit Capability Badges */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm font-retro-mono">
+                    <div className="flex items-center gap-2.5 p-2.5 rounded bg-zinc-900/60 border border-zinc-800 text-zinc-300 hover:border-amber-400/50 transition-colors">
+                      <span className="font-pixel text-[10px] text-amber-400">[01]</span>
+                      <span className="text-white font-medium">Full-Stack Web Systems</span>
+                    </div>
+
+                    <div className="flex items-center gap-2.5 p-2.5 rounded bg-zinc-900/60 border border-zinc-800 text-zinc-300 hover:border-cyan-400/50 transition-colors">
+                      <span className="font-pixel text-[10px] text-cyan-400">[02]</span>
+                      <span className="text-white font-medium">Cloud Architecture &amp; DBs</span>
+                    </div>
+
+                    <div className="flex items-center gap-2.5 p-2.5 rounded bg-zinc-900/60 border border-zinc-800 text-zinc-300 hover:border-amber-400/50 transition-colors">
+                      <span className="font-pixel text-[10px] text-amber-400">[03]</span>
+                      <span className="text-white font-medium">Agentic AI &amp; LLM Workflows</span>
+                    </div>
+
+                    <div className="flex items-center gap-2.5 p-2.5 rounded bg-zinc-900/60 border border-zinc-800 text-zinc-300 hover:border-blue-400/50 transition-colors">
+                      <span className="font-pixel text-[10px] text-blue-400">[04]</span>
+                      <span className="text-white font-medium">Offline-First &amp; Web3 Engines</span>
+                    </div>
+
+                    <div className="sm:col-span-2 flex items-center gap-2.5 p-2.5 rounded bg-zinc-900/60 border border-zinc-800 text-zinc-300 hover:border-emerald-400/50 transition-colors">
+                      <span className="font-pixel text-[10px] text-emerald-400">[05]</span>
+                      <span className="text-white font-medium">Systems Analysis &amp; Architecture (DFD / ERD)</span>
+                    </div>
+                  </div>
+
+                  {/* Call-to-action button */}
+                  <div className="flex justify-end pt-2">
+                    <a 
+                      href="#contact"
+                      className="font-pixel text-xs px-6 py-3 bg-zinc-900 text-amber-300 border-2 border-amber-400/80 hover:bg-amber-400 hover:text-zinc-950 transition-all duration-200 pixel-corners-sm flex items-center gap-2 group shadow-lg shadow-amber-500/10"
+                    >
+                      <span>Ping me</span>
+                      <SendHorizontal className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                    </a>
+                  </div>
+
+                </div>
+              </div>
+
+              {/* 3. Blocky 8-Bit Section Header (Works) */}
+              <div className="pt-4">
+                <h2 className="font-pixel text-4xl sm:text-5xl md:text-6xl text-white tracking-widest uppercase">
+                  WORKS
+                </h2>
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+      </FadeIn>
+
+      {/* ---------------- EDUCATION JOURNEY (Open Seamless Timeline Flow) ---------------- */}
+      <FadeIn delay={0.2}>
+        <section id="education" className="w-full py-8 md:py-16 relative">
+          
+          {/* Ambient Glow */}
+          <div className="absolute top-1/2 -left-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+
+          {/* Section Header */}
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12 pb-6 border-b border-zinc-800/80">
+            <div className="flex items-center gap-4">
+              <div className="p-3.5 rounded-2xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+                <GraduationCap className="w-7 h-7" />
+              </div>
+              <div>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight uppercase">
+                  Education <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Journey</span>
+                </h2>
+                <p className="text-sm text-zinc-400 mt-1">Academic foundation and qualifications</p>
+              </div>
+            </div>
+            <span className="self-start sm:self-auto text-xs font-mono text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 px-4 py-1.5 rounded-full">
+              Academic History
+            </span>
+          </div>
+
+          {/* Open Horizon Timeline - No Box Partitions */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
+            
+            {/* 1. University */}
+            <div className="pt-6 border-t-2 border-cyan-500/80 flex flex-col justify-between group transition-all duration-300">
+              <div>
+                <div className="flex justify-between items-center mb-4">
+                  <span className="text-xs font-mono text-cyan-400 uppercase tracking-widest flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+                    Bachelor&apos;s Degree
+                  </span>
+                  <span className="text-xs font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 rounded-full">
+                    Current
+                  </span>
+                </div>
+                <h3 className="font-bold text-white text-xl sm:text-2xl group-hover:text-cyan-400 transition-colors">
+                  Cavendish University Uganda
+                </h3>
+                <p className="text-sm sm:text-base text-zinc-300 mt-2 font-medium">
+                  BSc Software Engineering
+                </p>
+              </div>
+              <div className="mt-8 pt-4 border-t border-zinc-800/60 text-xs text-zinc-400 flex items-center gap-2">
+                <BookOpen className="w-4 h-4 text-cyan-400" /> Higher Education
+              </div>
+            </div>
+
+            {/* 2. A-Level */}
+            <div className="pt-6 border-t-2 border-blue-500/60 hover:border-blue-400 flex flex-col justify-between group transition-all duration-300">
+              <div>
+                <div className="flex justify-between items-center mb-4">
+                  <span className="text-xs font-mono text-blue-400 uppercase tracking-widest">
+                    A-Level
+                  </span>
+                  <span className="text-xs font-mono text-zinc-400 bg-zinc-800/80 border border-zinc-700/60 px-2.5 py-0.5 rounded-full">
+                    Completed
+                  </span>
+                </div>
+                <h3 className="font-bold text-white text-xl sm:text-2xl group-hover:text-blue-400 transition-colors">
+                  St. Noa Mawaggali SSS
+                </h3>
+                <p className="text-sm sm:text-base text-zinc-400 mt-2 font-medium">
+                  Jinja, Uganda
+                </p>
+              </div>
+              <div className="mt-8 pt-4 border-t border-zinc-800/60 text-xs text-zinc-400 flex items-center gap-2">
+                <School className="w-4 h-4 text-blue-400" /> Advanced Secondary
+              </div>
+            </div>
+
+            {/* 3. O-Level */}
+            <div className="pt-6 border-t-2 border-indigo-500/50 hover:border-indigo-400 flex flex-col justify-between group transition-all duration-300">
+              <div>
+                <div className="flex justify-between items-center mb-4">
+                  <span className="text-xs font-mono text-indigo-400 uppercase tracking-widest">
+                    O-Level
+                  </span>
+                  <span className="text-xs font-mono text-zinc-400 bg-zinc-800/80 border border-zinc-700/60 px-2.5 py-0.5 rounded-full">
+                    Completed
+                  </span>
+                </div>
+                <h3 className="font-bold text-white text-xl sm:text-2xl group-hover:text-indigo-400 transition-colors">
+                  Bishop Cipriano Kihangire SSS
+                </h3>
+                <p className="text-sm sm:text-base text-zinc-400 mt-2 font-medium">
+                  Luzira, Kampala
+                </p>
+              </div>
+              <div className="mt-8 pt-4 border-t border-zinc-800/60 text-xs text-zinc-400 flex items-center gap-2">
+                <School className="w-4 h-4 text-indigo-400" /> Ordinary Secondary
+              </div>
+            </div>
+
+            {/* 4. Primary */}
+            <div className="pt-6 border-t-2 border-zinc-700 hover:border-zinc-500 flex flex-col justify-between group transition-all duration-300">
+              <div>
+                <div className="flex justify-between items-center mb-4">
+                  <span className="text-xs font-mono text-zinc-400 uppercase tracking-widest">
+                    Primary Foundation
+                  </span>
+                  <span className="text-xs font-mono text-zinc-400 bg-zinc-800/80 border border-zinc-700/60 px-2.5 py-0.5 rounded-full">
+                    Completed
+                  </span>
+                </div>
+                <h3 className="font-bold text-white text-lg sm:text-xl group-hover:text-cyan-400 transition-colors leading-snug">
+                  Bishop Cipriano Kihangire
+                </h3>
+                <p className="text-sm text-zinc-400 mt-2 font-medium">
+                  &amp; Mivule Primary School (Mutungo)
+                </p>
+              </div>
+              <div className="mt-8 pt-4 border-t border-zinc-800/60 text-xs text-zinc-400 flex items-center gap-2">
+                <Award className="w-4 h-4 text-zinc-400" /> Early Foundation
+              </div>
+            </div>
+
+          </div>
+        </section>
+      </FadeIn>
+
+      {/* ---------------- FEATURED PROJECTS (Open Seamless Architectural Flow) ---------------- */}
+      <FadeIn delay={0.25}>
+        <section id="projects" className="w-full py-8 md:py-16 relative">
+          
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12 pb-6 border-b border-zinc-800/80">
+            <div className="flex items-center gap-4">
+              <div className="p-3.5 rounded-2xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+                <FolderGit2 className="w-7 h-7" />
+              </div>
+              <div>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight uppercase">
+                  Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Projects</span>
+                </h2>
+                <p className="text-sm text-zinc-400 mt-1">Production software, architecture highlights, &amp; engineering work</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
+            
+            {/* PROJECT 1 */}
+            <div className="lg:col-span-7 pt-8 border-t-2 border-cyan-500/80 flex flex-col justify-between group transition-all duration-300">
+              <div>
+                <div className="flex justify-between items-start mb-6">
+                  <span className="text-xs font-mono text-cyan-400 uppercase tracking-widest">[ Full-Stack Web Platform ]</span>
+                  <a href="#" className="p-3 rounded-full bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800 hover:border-cyan-400 transition-colors" aria-label="Open project 1">
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                </div>
+                <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-white group-hover:text-cyan-400 transition-colors">Enterprise Cloud Dashboard</h3>
+                <p className="text-zinc-400 text-sm sm:text-base md:text-lg mb-8 leading-relaxed">
+                  Real-time monitoring system engineered with reactive microservices, secure authentication flows, and high-throughput data visualizations.
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-2.5 pt-6 border-t border-zinc-800/80">
+                {["Next.js", "FastAPI", "Tailwind CSS", "Supabase", "TypeScript"].map((tech) => (
+                  <span key={tech} className="px-3.5 py-1.5 rounded-full bg-zinc-900 text-zinc-300 text-xs font-mono border border-zinc-800">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* PROJECT 2 */}
+            <div className="lg:col-span-5 pt-8 border-t-2 border-blue-500/60 flex flex-col justify-between group transition-all duration-300">
+              <div>
+                <div className="flex justify-between items-start mb-6">
+                  <span className="text-xs font-mono text-blue-400 uppercase tracking-widest">[ Mobile &amp; Decentralized ]</span>
+                  <a href="#" className="p-3 rounded-full bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800 hover:border-blue-400 transition-colors" aria-label="Open project 2">
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                </div>
+                <h3 className="text-2xl sm:text-3xl font-bold mb-4 text-white group-hover:text-blue-400 transition-colors">Offline-First MicroPay Engine</h3>
+                <p className="text-zinc-400 text-sm sm:text-base mb-8 leading-relaxed">
+                  Peer-to-peer resilient payment architecture with local cryptographic caching, automated network reconciliation, and sub-second settlement.
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-2.5 pt-6 border-t border-zinc-800/80">
+                {["React", "Node.js", "Web3 / MiniPay", "PostgreSQL"].map((tech) => (
+                  <span key={tech} className="px-3 py-1.5 rounded-full bg-zinc-900 text-zinc-300 text-xs font-mono border border-zinc-800">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+          </div>
+        </section>
+      </FadeIn>
+
+      {/* ---------------- TECHNICAL ARSENAL (Seamless Full Page Flow) ---------------- */}
+      <FadeIn delay={0.3}>
+        <TechnicalArsenal />
+      </FadeIn>
+
+      {/* ---------------- CONTACT & FOOTER (Seamless Full Page Flow) ---------------- */}
+      <FadeIn delay={0.4}>
+        <section id="contact" className="w-full pt-16 pb-20 md:pt-24 md:pb-28 text-center relative overflow-hidden border-t border-zinc-800/80">
+          
+          {/* Ambient Glow */}
+          <div className="absolute inset-0 bg-gradient-to-t from-cyan-500/10 via-blue-500/5 to-transparent blur-3xl pointer-events-none" />
+
+          <div className="max-w-3xl mx-auto space-y-6 relative z-10 px-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight uppercase leading-tight">
+              Let&apos;s build something <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-500">remarkable</span> together.
+            </h2>
+            <p className="text-zinc-400 text-sm sm:text-base md:text-lg max-w-xl mx-auto leading-relaxed">
+              I&apos;m open to freelance opportunities, collaborative projects, or full-time engineering roles.
             </p>
-            <div>
-              <a href="mailto:your.email@example.com" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-cyan-500 text-zinc-950 font-bold hover:bg-cyan-400 transition-colors">
+            <div className="pt-4">
+              <a 
+                href="mailto:evansrwothomio20@gmail.com" 
+                className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-white text-zinc-950 font-bold hover:bg-cyan-400 transition-all shadow-xl shadow-cyan-500/10 text-sm sm:text-base group"
+              >
                 <Mail className="w-5 h-5" /> Say Hello
               </a>
             </div>
-            <p className="text-xs text-zinc-600 pt-8">
-              © 2026 • Built with Next.js & Framer Motion
+            <p className="text-xs font-mono text-zinc-600 pt-16">
+              © 2026 Evans Rwothomio • Built with Next.js &amp; Framer Motion
             </p>
           </div>
-        </FadeIn>
+        </section>
+      </FadeIn>
 
       </div>
     </main>

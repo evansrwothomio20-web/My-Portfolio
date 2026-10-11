@@ -1,4 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@400;700&family=VT323&display=swap');
 @import "tailwindcss";
+
+/* ---------------- RETRO 8-BIT & PIXEL ART SYSTEM ---------------- */
+.font-pixel {
+  font-family: 'Silkscreen', 'Press Start 2P', monospace, sans-serif;
+}
+
+.font-retro-mono {
+  font-family: 'VT323', monospace;
+  letter-spacing: 0.05em;
+}
+
+/* Stepped 8-bit Corner Cuts */
+.pixel-corners {
+  clip-path: polygon(
+    0 8px,
+    4px 8px,
+    4px 4px,
+    8px 4px,
+    8px 0,
+    calc(100% - 8px) 0,
+    calc(100% - 8px) 4px,
+    calc(100% - 4px) 4px,
+    calc(100% - 4px) 8px,
+    100% 8px,
+    100% calc(100% - 8px),
+    calc(100% - 4px) calc(100% - 8px),
+    calc(100% - 4px) calc(100% - 4px),
+    calc(100% - 8px) calc(100% - 4px),
+    calc(100% - 8px) 100%,
+    8px 100%,
+    8px calc(100% - 4px),
+    4px calc(100% - 4px),
+    4px calc(100% - 8px),
+    0 calc(100% - 8px)
+  );
+}
+
+.pixel-corners-sm {
+  clip-path: polygon(
+    0 4px,
+    2px 4px,
+    2px 2px,
+    4px 2px,
+    4px 0,
+    calc(100% - 4px) 0,
+    calc(100% - 4px) 2px,
+    calc(100% - 2px) 2px,
+    calc(100% - 2px) 4px,
+    100% 4px,
+    100% calc(100% - 4px),
+    calc(100% - 2px) calc(100% - 4px),
+    calc(100% - 2px) calc(100% - 2px),
+    calc(100% - 4px) calc(100% - 2px),
+    calc(100% - 4px) 100%,
+    4px 100%,
+    4px calc(100% - 2px),
+    2px calc(100% - 2px),
+    2px calc(100% - 4px),
+    0 calc(100% - 4px)
+  );
+}
+
+/* 8-bit Notched Dialog Corner (bottom-left cut notch like RPG dialogs) */
+.pixel-notch {
+  clip-path: polygon(
+    0 12px,
+    6px 12px,
+    6px 6px,
+    12px 6px,
+    12px 0,
+    calc(100% - 12px) 0,
+    calc(100% - 12px) 6px,
+    calc(100% - 6px) 6px,
+    calc(100% - 6px) 12px,
+    100% 12px,
+    100% calc(100% - 12px),
+    calc(100% - 6px) calc(100% - 12px),
+    calc(100% - 6px) calc(100% - 6px),
+    calc(100% - 12px) calc(100% - 6px),
+    calc(100% - 12px) 100%,
+    16px 100%,
+    16px calc(100% - 6px),
+    8px calc(100% - 6px),
+    8px calc(100% - 12px),
+    0 calc(100% - 12px)
+  );
+}
+
+/* Dither Halftone Bitmap Overlay */
+.dither-screen {
+  background-image: 
+    radial-gradient(rgba(0, 0, 0, 0.75) 1px, transparent 1px),
+    radial-gradient(rgba(6, 182, 212, 0.15) 1px, transparent 1px);
+  background-size: 3px 3px, 3px 3px;
+  background-position: 0 0, 1.5px 1.5px;
+}
+
+/* Retro Pixel Box Shadows */
+.pixel-shadow-cyan {
+  box-shadow: 4px 4px 0px 0px rgba(6, 182, 212, 0.4);
+}
+
+.pixel-shadow-amber {
+  box-shadow: 4px 4px 0px 0px rgba(245, 158, 11, 0.4);
+}
+
+.pixel-shadow-dark {
+  box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 0.8);
+}
 
 :root {
   --background: #09090b;
@@ -21,4 +131,52 @@ body {
 
 .glass-card:hover {
   border-color: rgba(255, 255, 255, 0.18);
+}
+
+/* Cosmic Orbit Animations */
+@keyframes orbit-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbit-spin-reverse {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.orbit-ring-1 {
+  animation: orbit-spin 35s linear infinite;
+}
+
+.orbit-counter-1 {
+  animation: orbit-spin-reverse 35s linear infinite;
+}
+
+.orbit-ring-2 {
+  animation: orbit-spin-reverse 50s linear infinite;
+}
+
+.orbit-counter-2 {
+  animation: orbit-spin 50s linear infinite;
+}
+
+.orbit-ring-3 {
+  animation: orbit-spin 70s linear infinite;
+}
+
+.orbit-counter-3 {
+  animation: orbit-spin-reverse 70s linear infinite;
+}
+
+.pause-on-hover:hover,
+.pause-on-hover:hover * {
+  animation-play-state: paused;
 }

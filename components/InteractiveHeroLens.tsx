@@ -293,7 +293,7 @@ export default function InteractiveHeroLens() {
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array([10, 10, 10, 255]));
 
     const img = new Image();
-    img.src = "/evans-face.png";
+    img.src = "/evans-hero.jpg";
     img.onload = () => {
       if (!gl || !texture) return;
       imageWidth = img.naturalWidth || 1000;
@@ -405,8 +405,8 @@ export default function InteractiveHeroLens() {
           <span>Interactive Fluid Dispersion</span>
         </div>
 
-        {/* Cinematic Heavy Header: EXPLORE WHAT'S POSSIBLE */}
-        <h1 className="font-black text-5xl sm:text-7xl md:text-8xl lg:text-9xl text-white uppercase tracking-tighter leading-[0.84] drop-shadow-[0_8px_35px_rgba(0,0,0,0.95)] select-none">
+        {/* Cinematic Header: EXPLORE WHAT'S POSSIBLE (Refined smaller font size) */}
+        <h1 className="font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white uppercase tracking-tight leading-[0.95] drop-shadow-[0_6px_25px_rgba(0,0,0,0.95)] select-none">
           EXP<span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">LO</span>RE<br />
           WHAT&apos;S<br />
           <span className="relative inline-block">

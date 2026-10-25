@@ -217,16 +217,10 @@ export default function InteractiveHeroLens() {
         vec3 color = mix(faceColor, mistColor, clamp(effectiveMist * 0.85, 0.0, 0.90));
         color += mistColor * pow(effectiveMist, 2.0) * 0.45;
 
-        // ---------------- OPTICAL CAPSULE LENS VIGNETTE ----------------
-        // Curved glass border along the viewport edge with subtle refraction
-        vec2 p = v_uv * 2.0 - 1.0;
-        float edgeD = length(max(abs(p) - vec2(0.88, 0.84), 0.0));
-        float lensCurvature = smoothstep(0.0, 0.32, edgeD);
-        color = mix(color, vec3(0.015, 0.015, 0.03), lensCurvature * 0.92);
-
-        // Prismatic rim highlight around lens edge
-        float rim = smoothstep(0.14, 0.25, edgeD) * smoothstep(0.32, 0.25, edgeD);
-        color += vec3(0.2, 0.7, 0.9) * rim * 0.45;
+        // ---------------- FULL-BLEED SEAMLESS COVERAGE ----------------
+        // Subtle soft cinematic vignette at extreme edges
+        float vignette = length(v_uv - 0.5);
+        color *= 1.0 - smoothstep(0.48, 0.85, vignette) * 0.25;
 
         gl_FragColor = vec4(color, 1.0);
       }
@@ -309,12 +303,12 @@ export default function InteractiveHeroLens() {
       setIsReady(true);
     };
 
-    // Responsive Canvas Resizing with devicePixelRatio
+    // Responsive Canvas Resizing with devicePixelRatio (covers 100% full screen side-to-side)
     const handleResize = () => {
       if (!canvas || !gl) return;
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const width = window.innerWidth;
-      const height = window.innerHeight;
+      const width = containerRef.current ? containerRef.current.clientWidth : window.innerWidth;
+      const height = containerRef.current ? containerRef.current.clientHeight : window.innerHeight;
       canvas.width = Math.floor(width * dpr);
       canvas.height = Math.floor(height * dpr);
       gl.viewport(0, 0, canvas.width, canvas.height);
@@ -380,8 +374,8 @@ export default function InteractiveHeroLens() {
         className="absolute inset-0 w-full h-full object-cover pointer-events-none z-10"
       />
 
-      {/* ---------------- OPTICAL GLASS CAPSULE REFLECTION OVERLAY ---------------- */}
-      <div className="absolute inset-0 pointer-events-none z-20 border-[8px] sm:border-[16px] md:border-[24px] border-black/80 rounded-[32px] sm:rounded-[48px] md:rounded-[64px] shadow-[inset_0_0_120px_rgba(0,0,0,0.95)]" />
+      {/* ---------------- SEAMLESS FULL-BLEED BOTTOM TRANSITION ---------------- */}
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none z-20" />
 
       {/* ---------------- TOP SUBTLE NAVIGATION BAR (ARTIFACT HUD) ---------------- */}
       <header className="absolute top-6 left-6 right-6 z-40 flex items-center justify-between text-xs font-mono uppercase tracking-widest text-zinc-400 pointer-events-auto">

@@ -387,6 +387,12 @@ export default function InteractiveHeroLens() {
         </div>
 
         <div className="flex items-center gap-3">
+          <a
+            href="mailto:evansrwothomio20@gmail.com?subject=Hello%20Evans%20-%20Portfolio%20Inquiry"
+            className="hidden sm:inline-flex items-center gap-1.5 bg-cyan-500/20 hover:bg-cyan-400 text-cyan-300 hover:text-black font-semibold px-4 py-2 rounded-full backdrop-blur-md border border-cyan-500/30 transition-all duration-300 text-xs tracking-wider shadow-lg"
+          >
+            <span>Email Evans</span>
+          </a>
           <button
             onClick={scrollToStory}
             className="bg-white/10 hover:bg-white text-white hover:text-black font-semibold px-4 sm:px-5 py-2 rounded-full backdrop-blur-md border border-white/15 transition-all duration-300 text-xs tracking-wider cursor-pointer shadow-lg"

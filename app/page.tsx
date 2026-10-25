@@ -37,7 +37,7 @@ export default function Home() {
         <a href="#education" className="hover:text-cyan-400 transition-colors">Education</a>
         <a href="#projects" className="hover:text-cyan-400 transition-colors">Projects</a>
         <a href="#skills" className="hover:text-cyan-400 transition-colors">Skills</a>
-        <a href="#contact" className="hover:text-cyan-400 transition-colors">Contact</a>
+        <a href="mailto:evansrwothomio20@gmail.com?subject=Hello%20Evans%20-%20Portfolio%20Inquiry" className="hover:text-cyan-400 transition-colors">Contact</a>
       </nav>
 
       {/* ---------------- 1. INTERACTIVE HERO LENS (OPENING LANDING SCREEN) ---------------- */}
@@ -187,7 +187,7 @@ export default function Home() {
                     </p>
 
                     <p className="text-zinc-400 text-sm sm:text-base leading-relaxed">
-                      Explore my <a href="#projects" className="text-cyan-400 font-medium hover:underline">works</a> to see how I blend architecture with clean usability, and feel free to <a href="#contact" className="text-amber-400 font-medium hover:underline">reach out</a> and collaborate on something remarkable!
+                      Explore my <a href="#projects" className="text-cyan-400 font-medium hover:underline">works</a> to see how I blend architecture with clean usability, and feel free to <a href="mailto:evansrwothomio20@gmail.com?subject=Project%20Collaboration%20Inquiry" className="text-amber-400 font-medium hover:underline">reach out</a> and collaborate on something remarkable!
                     </p>
 
                     {/* Architectural Quote */}
@@ -262,10 +262,12 @@ export default function Home() {
                   {/* Call-to-action button */}
                   <div className="flex justify-end pt-2">
                     <a 
-                      href="#contact"
-                      className="font-pixel text-xs px-6 py-3 bg-zinc-900 text-amber-300 border-2 border-amber-400/80 hover:bg-amber-400 hover:text-zinc-950 transition-all duration-200 pixel-corners-sm flex items-center gap-2 group shadow-lg shadow-amber-500/10"
+                      href="mailto:evansrwothomio20@gmail.com?subject=Hello%20Evans%20-%20Project%20Inquiry"
+                      onClick={handleCopyEmail}
+                      className="font-pixel text-xs px-6 py-3 bg-zinc-900 text-amber-300 border-2 border-amber-400/80 hover:bg-amber-400 hover:text-zinc-950 transition-all duration-200 pixel-corners-sm flex items-center gap-2 group shadow-lg shadow-amber-500/10 cursor-pointer"
+                      title="Send Email to Evans (evansrwothomio20@gmail.com)"
                     >
-                      <span>Ping me</span>
+                      <span>{copied ? "COPIED & OPENING..." : "Ping me"}</span>
                       <SendHorizontal className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                     </a>
                   </div>
@@ -435,13 +437,24 @@ export default function Home() {
             <p className="text-zinc-400 text-sm sm:text-base md:text-lg max-w-xl mx-auto leading-relaxed">
               I&apos;m open to freelance opportunities, collaborative projects, or full-time engineering roles.
             </p>
-            <div className="pt-4">
+            <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
               <a 
-                href="mailto:evansrwothomio20@gmail.com" 
-                className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-white text-zinc-950 font-bold hover:bg-cyan-400 transition-all shadow-xl shadow-cyan-500/10 text-sm sm:text-base group"
+                href="mailto:evansrwothomio20@gmail.com?subject=Hello%20Evans%20-%20Let%27s%20Build%20Something%20Remarkable" 
+                onClick={handleCopyEmail}
+                className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-cyan-400 text-zinc-950 font-bold hover:bg-cyan-300 transition-all shadow-xl shadow-cyan-500/25 text-sm sm:text-base group cursor-pointer"
+                title="Send Email to Evans"
               >
-                <Mail className="w-5 h-5" /> Say Hello
+                <Mail className="w-5 h-5" /> 
+                <span>{copied ? "Opening Mail & Copied to Clipboard!" : "Say Hello (evansrwothomio20@gmail.com)"}</span>
               </a>
+              <button
+                onClick={handleCopyEmail}
+                className="inline-flex items-center gap-2 px-5 py-4 rounded-full bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-800 hover:border-cyan-500/50 text-xs sm:text-sm font-mono transition-colors cursor-pointer"
+                title="Copy evansrwothomio20@gmail.com to Clipboard"
+              >
+                {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Mail className="w-4 h-4 text-zinc-400" />}
+                <span>{copied ? "Copied!" : "Copy Email"}</span>
+              </button>
             </div>
             <p className="text-xs font-mono text-zinc-600 pt-16">
               © 2026 Evans Rwothomio • Built with Next.js &amp; Framer Motion

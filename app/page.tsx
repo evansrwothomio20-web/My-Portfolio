@@ -4,6 +4,7 @@ import { useState } from "react";
 import FadeIn from "@/components/FadeIn";
 import InteractiveHeroLens from "@/components/InteractiveHeroLens";
 import TechnicalArsenal from "@/components/TechnicalArsenal";
+import ProjectsSection from "@/components/ProjectsSection";
 import { Github, Linkedin } from "@/components/Icons";
 import { 
   Mail, 
@@ -410,74 +411,9 @@ export default function Home() {
         </section>
       </FadeIn>
 
-      {/* ---------------- FEATURED PROJECTS (Open Seamless Architectural Flow) ---------------- */}
+      {/* ---------------- FEATURED PROJECTS & GITHUB REPOSITORIES ---------------- */}
       <FadeIn delay={0.25}>
-        <section id="projects" className="w-full py-8 md:py-16 relative">
-          
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12 pb-6 border-b border-zinc-800/80">
-            <div className="flex items-center gap-4">
-              <div className="p-3.5 rounded-2xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
-                <FolderGit2 className="w-7 h-7" />
-              </div>
-              <div>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight uppercase">
-                  Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Projects</span>
-                </h2>
-                <p className="text-sm text-zinc-400 mt-1">Production software, architecture highlights, &amp; engineering work</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
-            
-            {/* PROJECT 1 */}
-            <div className="lg:col-span-7 pt-8 border-t-2 border-cyan-500/80 flex flex-col justify-between group transition-all duration-300">
-              <div>
-                <div className="flex justify-between items-start mb-6">
-                  <span className="text-xs font-mono text-cyan-400 uppercase tracking-widest">[ Full-Stack Web Platform ]</span>
-                  <a href="#" className="p-3 rounded-full bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800 hover:border-cyan-400 transition-colors" aria-label="Open project 1">
-                    <ExternalLink className="w-4 h-4" />
-                  </a>
-                </div>
-                <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-white group-hover:text-cyan-400 transition-colors">Enterprise Cloud Dashboard</h3>
-                <p className="text-zinc-400 text-sm sm:text-base md:text-lg mb-8 leading-relaxed">
-                  Real-time monitoring system engineered with reactive microservices, secure authentication flows, and high-throughput data visualizations.
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-2.5 pt-6 border-t border-zinc-800/80">
-                {["Next.js", "FastAPI", "Tailwind CSS", "Supabase", "TypeScript"].map((tech) => (
-                  <span key={tech} className="px-3.5 py-1.5 rounded-full bg-zinc-900 text-zinc-300 text-xs font-mono border border-zinc-800">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* PROJECT 2 */}
-            <div className="lg:col-span-5 pt-8 border-t-2 border-blue-500/60 flex flex-col justify-between group transition-all duration-300">
-              <div>
-                <div className="flex justify-between items-start mb-6">
-                  <span className="text-xs font-mono text-blue-400 uppercase tracking-widest">[ Mobile &amp; Decentralized ]</span>
-                  <a href="#" className="p-3 rounded-full bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800 hover:border-blue-400 transition-colors" aria-label="Open project 2">
-                    <ExternalLink className="w-4 h-4" />
-                  </a>
-                </div>
-                <h3 className="text-2xl sm:text-3xl font-bold mb-4 text-white group-hover:text-blue-400 transition-colors">Offline-First MicroPay Engine</h3>
-                <p className="text-zinc-400 text-sm sm:text-base mb-8 leading-relaxed">
-                  Peer-to-peer resilient payment architecture with local cryptographic caching, automated network reconciliation, and sub-second settlement.
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-2.5 pt-6 border-t border-zinc-800/80">
-                {["React", "Node.js", "Web3 / MiniPay", "PostgreSQL"].map((tech) => (
-                  <span key={tech} className="px-3 py-1.5 rounded-full bg-zinc-900 text-zinc-300 text-xs font-mono border border-zinc-800">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-          </div>
-        </section>
+        <ProjectsSection />
       </FadeIn>
 
       {/* ---------------- TECHNICAL ARSENAL (Seamless Full Page Flow) ---------------- */}
